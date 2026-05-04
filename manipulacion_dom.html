@@ -4,7 +4,21 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="index.js" defer></script>
-    <title>Document</title>
+    <title>Manipulation DOM</title>
   </head>
-  <body></body>
+  <body>
+    <main>
+      <header>
+        <h1>My Notes</h1>
+        <p>Write a note and press "Add" to save it to the list.</p>
+      </header>
+
+      <section>
+        <label for="noteInput">New note:</label>
+        <input type="text" id="noteInput" placeholder="Write your notes..." />
+        <button id="btnNote">Add</button>
+      </section>
+      <ul id="noteList"></ul>
+    </main>
+  </body>
 </html>
