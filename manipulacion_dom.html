@@ -10,15 +10,16 @@
     <main>
       <header>
         <h1>My Notes</h1>
-        <p>Write a note and press "Add" to save it to the list.</p>
+        <p>Write a note and press "submit" to save it to the list.</p>
       </header>
 
-      <section>
+      <form method="post">
         <label for="noteInput">New note:</label>
         <input type="text" id="noteInput" placeholder="Write your notes..." />
-        <button id="btnNote">Add</button>
-      </section>
+        <button id="btnNote">submit</button>
+      </form>
       <ul id="noteList"></ul>
+      <button id="deletebtn">Delete</button>
     </main>
   </body>
 </html>
