@@ -20,7 +20,17 @@ function renderNotes() {
   list.innerHTML = '';
   notes.forEach((noteText) => {
     let li = document.createElement('li');
-    li.textContent = noteText;
+    li.textContent = noteText + ' ';
+
+    let deleteBtn = document.createElement('button');
+    deleteBtn.textContent = 'Delete';
+
+    deleteBtn.addEventListener('click', () => {
+      list.removeChild(li);
+      console.log('Deleted');
+    });
+
+    li.appendChild(deleteBtn);
     list.appendChild(li);
   });
 }
@@ -42,7 +52,17 @@ function addNote() {
 
     /* Update the UI */
     let newNote = document.createElement('li');
-    newNote.textContent = input.value;
+    newNote.textContent = input.value + ' ';
+
+    let deleteBtn = document.createElement('button');
+    deleteBtn.textContent = 'Delete';
+
+    deleteBtn.addEventListener('click', () => {
+      list.removeChild(newNote);
+      console.log('Deleted');
+    });
+
+    newNote.appendChild(deleteBtn);
     list.appendChild(newNote);
 
     /* Update Storage */
