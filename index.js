@@ -15,10 +15,9 @@ let notes = JSON.parse(localStorage.getItem('notes')) || [];
    @param {Array} data - The array of strings to display
    @param {HTMLElement} container - The list element where notes will be injected
 */
-
 function renderNotes() {
   list.innerHTML = '';
-  notes.forEach((noteText) => {
+  notes.forEach((noteText, index) => {
     let li = document.createElement('li');
     li.textContent = noteText + ' ';
 
@@ -26,7 +25,9 @@ function renderNotes() {
     deleteBtn.textContent = 'Delete';
 
     deleteBtn.addEventListener('click', () => {
-      list.removeChild(li);
+      notes.splice(index, 1);
+      localStorage.setItem('notes', JSON.stringify(notes));
+      renderNotes();
       console.log('Deleted');
     });
 
@@ -44,29 +45,16 @@ renderNotes();
    @param {Array} data - The array to update
    @param {HTMLElement} container - The UI list to update
 */
-
 function addNote() {
   if (input.value.trim() !== '') {
     /* Update the data array */
     notes.push(input.value);
 
-    /* Update the UI */
-    let newNote = document.createElement('li');
-    newNote.textContent = input.value + ' ';
-
-    let deleteBtn = document.createElement('button');
-    deleteBtn.textContent = 'Delete';
-
-    deleteBtn.addEventListener('click', () => {
-      list.removeChild(newNote);
-      console.log('Deleted');
-    });
-
-    newNote.appendChild(deleteBtn);
-    list.appendChild(newNote);
-
     /* Update Storage */
     localStorage.setItem('notes', JSON.stringify(notes));
+
+    /* Update the UI */
+    renderNotes();
 
     /* Reset the global input field */
     input.value = '';
@@ -88,6 +76,7 @@ formNote.addEventListener('submit', (event) => {
    @param {Array} data - The array to remove the item from
    @param {HTMLElement} container - The UI list to remove the element from
 */
+
 deleteNote.addEventListener('click', () => {
   if (list.lastElementChild) {
     notes.pop();
